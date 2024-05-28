@@ -9,8 +9,15 @@ module.exports = {
       padding: {
         DEFAULT: '0',
       },
+      margin: {
+        DEFAULT: '0',
+      },
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'hkgrotesk': ['"Hanken Grotesk"', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
