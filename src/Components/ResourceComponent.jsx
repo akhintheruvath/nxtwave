@@ -17,7 +17,14 @@ export const ResourceComponent = ({ icon_url, title, category, link, description
             </div>
          </div>
          <div className="mb-2">
-            <a href={link} className="text-sm text-[#0B69FF] leading-6">{link}</a>
+            <a
+               href={link}
+               target="_blank"
+               rel="noreferrer"
+               className="text-sm text-[#0B69FF] leading-6"
+            >
+               {link}
+            </a>
          </div>
          <p className="text-sm leading-6 text-[#7E858E]">{description}</p>
       </div>
