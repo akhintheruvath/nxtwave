@@ -4,7 +4,7 @@ import { ProfileImage } from "./ProfileImage";
 
 export const HeaderWithButton = () => {
    return (
-      <div className="flex justify-between items-center py-4 px-12 border-b border-[#D7DFE9]">
+      <div className="flex justify-between items-center py-4 px-12 border-b border-[#D7DFE9] bg-white fixed top-0 left-0 w-full z-10">
          <NxtwaveLogo />
          <div className="flex">
             <div className="flex bg-[#0B69FF] items-center px-5 py-2 rounded-md cursor-pointer">

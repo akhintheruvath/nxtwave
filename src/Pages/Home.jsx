@@ -61,7 +61,7 @@ export const Home = () => {
    return (
       <div className="h-screen">
          <HeaderWithButton />
-         <div className="py-11 px-36 bg-[#FBFBFB] min-h-full">
+         <div className="mt-16 pt-14 pb-11 px-36 bg-[#FBFBFB] min-h-full">
             <div className="flex justify-center mb-8">
                <Tabs
                   currentTab={currentTab}
