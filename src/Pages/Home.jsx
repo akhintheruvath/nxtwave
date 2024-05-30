@@ -80,13 +80,19 @@ export const Home = () => {
                { loading && <div>Loading Data...</div> }
                {
                   success ? (
-                     displayData.map(obj => {
-                        return (
-                           <Fragment key={obj.id}>
-                              <ResourceComponent {...obj} />
-                           </Fragment>
-                        );
-                     })
+                     displayData.length ? (
+                        displayData.map(obj => {
+                           return (
+                              <Fragment key={obj.id}>
+                                 <ResourceComponent {...obj} />
+                              </Fragment>
+                           );
+                        })
+                     ) : (
+                        <p className="text-[#171F46] font-medium font-hkgrotesk">
+                           No matching data found.
+                        </p>
+                     )
                   ) : error?.message
                }
             </div>
