@@ -77,7 +77,7 @@ export const Home = () => {
                />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-               { loading && <div>Loading Data...</div> }
+               { loading && <div className="text-[#171F46] font-medium font-hkgrotesk">Loading Data...</div> }
                {
                   success ? (
                      displayData.length ? (
