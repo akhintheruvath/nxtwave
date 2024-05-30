@@ -17,6 +17,7 @@ export const Home = () => {
    const [currentTab, setCurrentTab] = useState("Resources");
    const [currentPage, setCurrentPage] = useState(1);
    const [numberOfPages, setNumberOfPages] = useState(1);
+   const [searchText, setSearchText] = useState("");
    const perPage = 6;
  
    useEffect(() => {
@@ -40,21 +41,24 @@ export const Home = () => {
    }, []);
 
    useEffect(() => {
-      if(success && currentTab === "Resources") {
-         setNumberOfPages(Math.ceil(data.length / perPage));
-         setDisplayData(data.slice((currentPage - 1) * perPage, perPage * currentPage));
-      } else if(success && currentTab === "Requests") {
-         setNumberOfPages(Math.ceil(requestData.length / perPage));
-         setDisplayData(requestData.slice((currentPage - 1) * perPage, perPage * currentPage));
-      } else if(success && currentTab === "Users") {
-         setNumberOfPages(Math.ceil(usersData.length / perPage));
-         setDisplayData(usersData.slice((currentPage - 1) * perPage, perPage * currentPage));
+      function searchAndSetNumberOfPagesAndDisplayData(dataArray) {
+         const filteredData = dataArray.filter((obj) => obj.title.toLowerCase().includes(searchText.toLowerCase()));
+         setNumberOfPages(Math.ceil(filteredData.length / perPage));
+         setDisplayData(filteredData.slice((currentPage - 1) * perPage, perPage * currentPage));
       }
-   }, [currentTab, success, data, currentPage]);
+
+      if(success && currentTab === "Resources") {
+         searchAndSetNumberOfPagesAndDisplayData(data);
+      } else if(success && currentTab === "Requests") {
+         searchAndSetNumberOfPagesAndDisplayData(requestData);
+      } else if(success && currentTab === "Users") {
+         searchAndSetNumberOfPagesAndDisplayData(usersData);
+      }
+   }, [currentTab, success, data, currentPage, searchText]);
 
    useEffect(() => {
       setCurrentPage(1);
-   }, [currentTab]);
+   }, [currentTab, searchText]);
 
    return (
       <div className="h-screen">
@@ -67,7 +71,10 @@ export const Home = () => {
                />
             </div>
             <div className="mb-8">
-               <Searchbar />
+               <Searchbar
+                  searchText={searchText}
+                  setSearchText={setSearchText}
+               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                { loading && <div>Loading Data...</div> }
