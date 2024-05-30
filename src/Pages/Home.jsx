@@ -43,12 +43,10 @@ export const Home = () => {
       if(success && currentTab === "Resources") {
          setNumberOfPages(Math.ceil(data.length / perPage));
          setDisplayData(data.slice((currentPage - 1) * perPage, perPage * currentPage));
-      }
-      else if(success && currentTab === "Requests") {
+      } else if(success && currentTab === "Requests") {
          setNumberOfPages(Math.ceil(requestData.length / perPage));
          setDisplayData(requestData.slice((currentPage - 1) * perPage, perPage * currentPage));
-      }
-      else if(success && currentTab === "Users") {
+      } else if(success && currentTab === "Users") {
          setNumberOfPages(Math.ceil(usersData.length / perPage));
          setDisplayData(usersData.slice((currentPage - 1) * perPage, perPage * currentPage));
       }
