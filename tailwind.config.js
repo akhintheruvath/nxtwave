@@ -21,7 +21,8 @@ module.exports = {
       colors: {
         'customGrey': '#7E858E',
         'customHeadingColor': "#171F46",
-      }
+        'greyBorder': "#D7DFE9"
+      },
     },
   },
   plugins: [],
