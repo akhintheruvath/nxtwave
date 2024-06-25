@@ -16,7 +16,12 @@ module.exports = {
     extend: {
       fontFamily: {
         'hkgrotesk': ['"Hanken Grotesk"', 'sans-serif'],
+        'rubik': ['"Rubik"', 'sans-serif'],
       },
+      colors: {
+        'customGrey': '#7E858E',
+        'customHeadingColor': "#171F46",
+      }
     },
   },
   plugins: [],
