@@ -6,7 +6,7 @@ export const PaginationPages = ({ numberOfPages, currentPage, setCurrentPage }) 
       {pages.map(page => (
         <div
           key={page}
-          className={`flex justify-center text-[#171F46] border border-r-[#D7DFE9] cursor-pointer w-11 py-1 ${page === currentPage && 'bg-[#0B69FF] text-white'}`}
+          className={`flex justify-center text-customHeadingColor border border-r-[#D7DFE9] cursor-pointer w-11 py-1 ${page === currentPage && 'bg-[#0B69FF] text-white'}`}
           onClick={() => setCurrentPage(page)}
         >
           {page}

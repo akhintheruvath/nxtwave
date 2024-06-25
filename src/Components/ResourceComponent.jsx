@@ -12,8 +12,8 @@ export const ResourceComponent = ({ icon_url, title, category, link, description
                </div>
             </div>
             <div>
-               <h2 className="text-[#171F46] text-base font-medium font-hkgrotesk">{title}</h2>
-               <h4 className="text-[#7E858E] text-[12px] leading-4 font-hkgrotesk">{category}</h4>
+               <h2 className="text-customHeadingColor text-base font-medium font-hkgrotesk">{title}</h2>
+               <h4 className="text-customGrey text-[12px] leading-4 font-hkgrotesk">{category}</h4>
             </div>
          </div>
          <div className="mb-2">
@@ -26,7 +26,7 @@ export const ResourceComponent = ({ icon_url, title, category, link, description
                {link}
             </a>
          </div>
-         <p className="text-sm leading-6 text-[#7E858E]">{description}</p>
+         <p className="text-sm leading-6 text-customGrey">{description}</p>
       </div>
    );
 }

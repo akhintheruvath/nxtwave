@@ -61,7 +61,7 @@ export const Home = () => {
    }, [currentTab, searchText]);
 
    return (
-      <div className="h-screen">
+      <div className="min-h-screen">
          <HeaderWithButton />
          <div className="mt-16 pt-14 pb-11 px-36 bg-[#FBFBFB] min-h-full">
             <div className="flex justify-center mb-8">
@@ -77,7 +77,7 @@ export const Home = () => {
                />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-               { loading && <div className="text-[#171F46] font-medium font-hkgrotesk">Loading Data...</div> }
+               { loading && <div className="text-customHeadingColor font-medium font-hkgrotesk">Loading Data...</div> }
                {
                   success ? (
                      displayData.length ? (
@@ -89,7 +89,7 @@ export const Home = () => {
                            );
                         })
                      ) : (
-                        <p className="text-[#171F46] font-medium font-hkgrotesk">
+                        <p className="text-customHeadingColor font-medium font-hkgrotesk">
                            No matching data found.
                         </p>
                      )
