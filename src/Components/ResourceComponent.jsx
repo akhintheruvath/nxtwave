@@ -21,7 +21,7 @@ export const ResourceComponent = ({ icon_url, title, category, link, description
                href={link}
                target="_blank"
                rel="noreferrer"
-               className="text-sm text-[#0B69FF] leading-6"
+               className="text-sm text-customBlue leading-6"
             >
                {link}
             </a>

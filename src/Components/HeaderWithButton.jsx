@@ -14,7 +14,7 @@ export const HeaderWithButton = () => {
          <NxtwaveLogo />
          <div className="flex">
             <div
-               className="flex bg-[#0B69FF] items-center px-5 py-2 rounded-md cursor-pointer"
+               className="flex bg-customBlue items-center px-5 py-2 rounded-md cursor-pointer"
                onClick={handleAdd}
             >
                <AddIcon />
