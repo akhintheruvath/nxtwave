@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import validator from 'validator';
 import { Header } from "../Components/Header";
 import { LeftArrow } from "../Icons/LeftArrow";
 import { Label } from "../Components/Label";
@@ -11,6 +12,9 @@ export const AddResource = () => {
    const navigate = useNavigate();
    const nameRef = useRef("");
    const linkRef = useRef("");
+   const [invalidName, setInvalidName] = useState(null);
+   const [invalidUrl, setInvalidUrl] = useState(null);
+   const [invalidDescription, setInvalidDescription] = useState(null);
    const descriptionRef = useRef("");
    const [selectedImage, setSelectedImage] = useState(null);
    const imageInputRef = useRef(null);
@@ -29,6 +33,19 @@ export const AddResource = () => {
          reader.readAsDataURL(file);   
       }
    };
+
+   const handleCreate = () => {
+      const name = nameRef.current.value;
+      if(name.length < 3) setInvalidName(true);
+      else setInvalidName(false);
+
+      const link = linkRef.current.value;
+      if(!validator.isURL(link)) setInvalidUrl(true);
+      else setInvalidUrl(false);
+
+      const description = descriptionRef.current.value;
+      if(description.length < 3) setInvalidDescription(true);
+   }
 
    return (
       <div className="min-h-screen">
@@ -52,13 +69,23 @@ export const AddResource = () => {
                   <div className="flex flex-col w-5/6 sm:w-2/3 lg:w-1/2">
                      <h2 className="font-rubik text-customHeadingColor flex justify-center mb-8 text-3xl">Add a Resource</h2>
                      <Label htmlFor="name">NAME</Label>
-                     <Input id="name" type="text" />
+                     {
+                        invalidName && (<p className="py-1 text-red-400">Name's length should be more than 2 characters</p>)
+                     }
+                     <Input id="name" type="text" inputRef={nameRef} />
                      <Label htmlFor="link">LINK</Label>
-                     <Input id="link" type="url" />
+                     {
+                        invalidUrl && (<p className="py-1 text-red-400">Provide a valid link</p>)
+                     }
+                     <Input id="link" type="url" inputRef={linkRef} />
                      <Label htmlFor="description">DESCRIPTION</Label>
+                     {
+                        invalidDescription && (<p className="py-1 text-red-400">Description should be more than 2 characters</p>)
+                     }
                      <textarea
                         id="description"
                         type="text"
+                        ref={descriptionRef}
                         className="p-2 mb-8 border border-greyBorder rounded resize-none min-h-16 focus:outline-none"
                      />
                      <div className="flex items-center mb-20">
@@ -67,7 +94,7 @@ export const AddResource = () => {
                               selectedImage && (
                                  <img
                                     src={selectedImage}
-                                    alt="selected image"
+                                    alt="selected preview"
                                     className="w-auto h-full"
                                  />
                               )
@@ -88,7 +115,7 @@ export const AddResource = () => {
                      <div className="flex justify-center">
                         <CommonButton
                            buttonText={"CREATE"}
-                           handleClick={() => { console.log("Button clicked") }}
+                           handleClick={handleCreate}
                         />
                      </div>
                   </div>
