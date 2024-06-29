@@ -7,6 +7,8 @@ import { Input } from "../Components/Input";
 import { useNavigate } from "react-router-dom";
 import { UploadIcon } from "../Icons/UploadIcon";
 import { CommonButton } from "../Components/CommonButton";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export const AddResource = () => {
    const navigate = useNavigate();
@@ -17,6 +19,7 @@ export const AddResource = () => {
    const [invalidDescription, setInvalidDescription] = useState(null);
    const descriptionRef = useRef("");
    const [selectedImage, setSelectedImage] = useState(null);
+   const [invalid, setInvalid] = useState(true);
    const imageInputRef = useRef(null);
 
    const handleDivClick = () => {
@@ -34,17 +37,51 @@ export const AddResource = () => {
       }
    };
 
-   const handleCreate = () => {
+   const handleCreate = async () => {
       const name = nameRef.current.value;
-      if(name.length < 3) setInvalidName(true);
-      else setInvalidName(false);
-
       const link = linkRef.current.value;
-      if(!validator.isURL(link)) setInvalidUrl(true);
-      else setInvalidUrl(false);
-
       const description = descriptionRef.current.value;
-      if(description.length < 3) setInvalidDescription(true);
+   
+      let hasInvalidFields = false;
+   
+      if(name.length < 3) {
+         setInvalidName(true);
+         hasInvalidFields = true;
+      } else {
+         setInvalidName(false);
+      }
+   
+      if(!validator.isURL(link)) {
+         setInvalidUrl(true);
+         hasInvalidFields = true;
+      } else {
+         setInvalidUrl(false);
+      }
+   
+      if(description.length < 3) {
+         setInvalidDescription(true);
+         hasInvalidFields = true;
+      } else {
+         setInvalidDescription(false);
+      }
+   
+      setInvalid(hasInvalidFields);
+      
+      if(!hasInvalidFields) {
+         try {
+            // this is just a sample api
+            const response = await axios.get("https://media-content.ccbp.in/website/react-assignment/add_resource.json");
+            if(response.status === 200) {
+               toast.success("Added Successfully", {
+                  position: "bottom-center",
+               });
+            }
+         } catch (error) {
+            toast.error("Something went wrong", {
+               position: "bottom-center",
+            });
+         }
+      }
    }
 
    return (
