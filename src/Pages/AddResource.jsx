@@ -19,7 +19,6 @@ export const AddResource = () => {
    const [invalidDescription, setInvalidDescription] = useState(null);
    const descriptionRef = useRef("");
    const [selectedImage, setSelectedImage] = useState(null);
-   const [invalid, setInvalid] = useState(true);
    const imageInputRef = useRef(null);
 
    const handleDivClick = () => {
@@ -64,8 +63,6 @@ export const AddResource = () => {
       } else {
          setInvalidDescription(false);
       }
-   
-      setInvalid(hasInvalidFields);
       
       if(!hasInvalidFields) {
          try {
@@ -138,7 +135,7 @@ export const AddResource = () => {
                            }
                         </div>
                         <div className="flex items-center cursor-pointer" onClick={handleDivClick}>
-                           <UploadIcon /><span className="ml-2 font-hkgrotesk text-sm leading-6 text-customGrey">Change photo</span>
+                           <UploadIcon /><span className="ml-2 font-hkgrotesk text-sm leading-6 text-customGrey">{selectedImage ? "Change photo" : "Upload photo"}</span>
                            <input
                               className="hidden"
                               id="imageInput"
